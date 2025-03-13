@@ -1,0 +1,8 @@
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/NES.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/CMakeFiles/SDL3-shared.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/CMakeFiles/SDL3_test.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/CMakeFiles/SDL_uclibc.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/CMakeFiles/edit_cache.dir
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/CMakeFiles/rebuild_cache.dir

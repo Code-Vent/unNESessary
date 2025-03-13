@@ -1,0 +1,832 @@
+Performing C SOURCE FILE Test HAVE_GCC_WDOCUMENTATION failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ugta09
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_158e7 && [1/2] Building C object CMakeFiles/cmTC_158e7.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_158e7.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_GCC_WDOCUMENTATION  -D_GNU_SOURCE=1 -fdiagnostics-color=always   -Wdocumentation -o CMakeFiles/cmTC_158e7.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ugta09/src.c
+gcc.exe: error: unrecognized command-line option '-Wdocumentation'
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE_GCC_WDOCUMENTATION_UNKNOWN_COMMAND failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9j18b3
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_ebd5d && [1/2] Building C object CMakeFiles/cmTC_ebd5d.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_ebd5d.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_GCC_WDOCUMENTATION_UNKNOWN_COMMAND  -D_GNU_SOURCE=1 -fdiagnostics-color=always   -Wdocumentation-unknown-command -o CMakeFiles/cmTC_ebd5d.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9j18b3/src.c
+gcc.exe: error: unrecognized command-line option '-Wdocumentation-unknown-command'
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE_GCC_COMMENT_BLOCK_COMMANDS failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ux4279
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_0385d && [1/2] Building C object CMakeFiles/cmTC_0385d.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_0385d.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_GCC_COMMENT_BLOCK_COMMANDS  -D_GNU_SOURCE=1 -fdiagnostics-color=always   -fcomment-block-commands=threadsafety -o CMakeFiles/cmTC_0385d.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ux4279/src.c
+gcc.exe: error: unrecognized command-line option '-fcomment-block-commands=threadsafety'
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE_CLANG_COMMENT_BLOCK_COMMANDS failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-56fhxi
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_14900 && [1/2] Building C object CMakeFiles/cmTC_14900.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_14900.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_CLANG_COMMENT_BLOCK_COMMANDS  -D_GNU_SOURCE=1 -fdiagnostics-color=always   /clang:-fcomment-block-commands=threadsafety -o CMakeFiles/cmTC_14900.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-56fhxi/src.c
+gcc.exe: warning: /clang:-fcomment-block-commands=threadsafety: linker input file unused because linking not done
+gcc.exe: error: /clang:-fcomment-block-commands=threadsafety: linker input file not found: No such file or directory
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int main(void) { return 0; }
+
+Determining if the __GLIBC__ exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xi8zkx
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_cc1dd && [1/2] Building C object CMakeFiles/cmTC_cc1dd.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_cc1dd.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_cc1dd.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xi8zkx/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xi8zkx/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xi8zkx/CheckSymbolExists.c:8:19: error: '__GLIBC__' undeclared (first use in this function); did you mean '__LINE__'?
+    8 |   return ((int*)(&__GLIBC__))[argc];
+      |                   ^~~~~~~~~
+      |                   __LINE__
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xi8zkx/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef __GLIBC__
+  return ((int*)(&__GLIBC__))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_GCC_FVISIBILITY failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3jt6gu
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_f31db && [1/2] Building C object CMakeFiles/cmTC_f31db.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_f31db.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_GCC_FVISIBILITY  -D_GNU_SOURCE=1 -fvisibility=hidden -Werror -fdiagnostics-color=always -o CMakeFiles/cmTC_f31db.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3jt6gu/src.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3jt6gu/src.c: In function 'bar':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3jt6gu/src.c:8:33: error: visibility attribute not supported in this configuration; ignored [-Werror=attributes]
+    8 |       int bar(void) { return 1; }
+      |                                 ^
+cc1.exe: all warnings being treated as errors
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+      #if !defined(__GNUC__) || __GNUC__ < 4
+      #error SDL only uses visibility attributes in GCC 4 or newer
+      #endif
+      __attribute__((visibility("default"))) int foo(void);
+      __attribute__((visibility("hidden")))  int bar(void);
+      int foo(void) { return 0; }
+      int bar(void) { return 1; }
+      int main(void) { return 0; }
+
+Determining if the include file alloca.h exists failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vpfly6
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_dc530 && [1/2] Building C object CMakeFiles/cmTC_dc530.dir/CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_dc530.dir/CheckIncludeFile.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_dc530.dir/CheckIncludeFile.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vpfly6/CheckIncludeFile.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vpfly6/CheckIncludeFile.c:1:10: fatal error: alloca.h: No such file or directory
+    1 | #include <alloca.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the include file iconv.h exists failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9zhndp
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_490c2 && [1/2] Building C object CMakeFiles/cmTC_490c2.dir/CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_490c2.dir/CheckIncludeFile.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_490c2.dir/CheckIncludeFile.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9zhndp/CheckIncludeFile.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9zhndp/CheckIncludeFile.c:1:10: fatal error: iconv.h: No such file or directory
+    1 | #include <iconv.h>
+      |          ^~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the bcopy exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vkcpxg
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_6650c && [1/2] Building C object CMakeFiles/cmTC_6650c.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_6650c.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_6650c.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vkcpxg/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vkcpxg/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vkcpxg/CheckSymbolExists.c:25:19: error: 'bcopy' undeclared (first use in this function)
+   25 |   return ((int*)(&bcopy))[argc];
+      |                   ^~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-vkcpxg/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef bcopy
+  return ((int*)(&bcopy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the index exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2gl3ce
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_d78d9 && [1/2] Building C object CMakeFiles/cmTC_d78d9.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_d78d9.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_d78d9.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2gl3ce/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2gl3ce/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2gl3ce/CheckSymbolExists.c:25:19: error: 'index' undeclared (first use in this function)
+   25 |   return ((int*)(&index))[argc];
+      |                   ^~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2gl3ce/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef index
+  return ((int*)(&index))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the rindex exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-91fyh1
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_371ac && [1/2] Building C object CMakeFiles/cmTC_371ac.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_371ac.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_371ac.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-91fyh1/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-91fyh1/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-91fyh1/CheckSymbolExists.c:25:19: error: 'rindex' undeclared (first use in this function)
+   25 |   return ((int*)(&rindex))[argc];
+      |                   ^~~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-91fyh1/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef rindex
+  return ((int*)(&rindex))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the setenv exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9uwl73
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_16a2d && [1/2] Building C object CMakeFiles/cmTC_16a2d.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_16a2d.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_16a2d.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9uwl73/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9uwl73/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9uwl73/CheckSymbolExists.c:25:19: error: 'setenv' undeclared (first use in this function); did you mean 'getenv'?
+   25 |   return ((int*)(&setenv))[argc];
+      |                   ^~~~~~
+      |                   getenv
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9uwl73/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef setenv
+  return ((int*)(&setenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the sqr exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0nnrr4
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_3f3f9 && [1/2] Building C object CMakeFiles/cmTC_3f3f9.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_3f3f9.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_3f3f9.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0nnrr4/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0nnrr4/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0nnrr4/CheckSymbolExists.c:25:19: error: 'sqr' undeclared (first use in this function); did you mean 'sqrt'?
+   25 |   return ((int*)(&sqr))[argc];
+      |                   ^~~
+      |                   sqrt
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0nnrr4/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sqr
+  return ((int*)(&sqr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strlcat exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-z8sliq
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_7d1c7 && [1/2] Building C object CMakeFiles/cmTC_7d1c7.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_7d1c7.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_7d1c7.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-z8sliq/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-z8sliq/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-z8sliq/CheckSymbolExists.c:25:19: error: 'strlcat' undeclared (first use in this function); did you mean 'strncat'?
+   25 |   return ((int*)(&strlcat))[argc];
+      |                   ^~~~~~~
+      |                   strncat
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-z8sliq/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcat
+  return ((int*)(&strlcat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strlcpy exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-173uaa
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_1e49d && [1/2] Building C object CMakeFiles/cmTC_1e49d.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_1e49d.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_1e49d.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-173uaa/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-173uaa/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-173uaa/CheckSymbolExists.c:25:19: error: 'strlcpy' undeclared (first use in this function); did you mean 'strncpy'?
+   25 |   return ((int*)(&strlcpy))[argc];
+      |                   ^~~~~~~
+      |                   strncpy
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-173uaa/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strlcpy
+  return ((int*)(&strlcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strnstr exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-8qa740
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_5d7ff && [1/2] Building C object CMakeFiles/cmTC_5d7ff.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_5d7ff.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_5d7ff.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-8qa740/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-8qa740/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-8qa740/CheckSymbolExists.c:25:19: error: 'strnstr' undeclared (first use in this function); did you mean 'strstr'?
+   25 |   return ((int*)(&strnstr))[argc];
+      |                   ^~~~~~~
+      |                   strstr
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-8qa740/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strnstr
+  return ((int*)(&strnstr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the unsetenv exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-c3jav8
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_621a7 && [1/2] Building C object CMakeFiles/cmTC_621a7.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_621a7.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_621a7.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-c3jav8/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-c3jav8/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-c3jav8/CheckSymbolExists.c:25:19: error: 'unsetenv' undeclared (first use in this function)
+   25 |   return ((int*)(&unsetenv))[argc];
+      |                   ^~~~~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-c3jav8/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef unsetenv
+  return ((int*)(&unsetenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the wcslcat exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-22xjtz
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_8632a && [1/2] Building C object CMakeFiles/cmTC_8632a.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_8632a.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_8632a.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-22xjtz/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-22xjtz/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-22xjtz/CheckSymbolExists.c:25:19: error: 'wcslcat' undeclared (first use in this function); did you mean 'wcsncat'?
+   25 |   return ((int*)(&wcslcat))[argc];
+      |                   ^~~~~~~
+      |                   wcsncat
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-22xjtz/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcslcat
+  return ((int*)(&wcslcat))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the wcslcpy exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pj6rzb
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_1f1a5 && [1/2] Building C object CMakeFiles/cmTC_1f1a5.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_1f1a5.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_1f1a5.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pj6rzb/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pj6rzb/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pj6rzb/CheckSymbolExists.c:25:19: error: 'wcslcpy' undeclared (first use in this function); did you mean 'wcsncpy'?
+   25 |   return ((int*)(&wcslcpy))[argc];
+      |                   ^~~~~~~
+      |                   wcsncpy
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pj6rzb/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef wcslcpy
+  return ((int*)(&wcslcpy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the _uitoa exist failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-tfj84a
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_0797c && [1/2] Building C object CMakeFiles/cmTC_0797c.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_0797c.dir/CheckSymbolExists.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_0797c.dir/CheckSymbolExists.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-tfj84a/CheckSymbolExists.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-tfj84a/CheckSymbolExists.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-tfj84a/CheckSymbolExists.c:25:19: error: '_uitoa' undeclared (first use in this function); did you mean '_ultoa'?
+   25 |   return ((int*)(&_uitoa))[argc];
+      |                   ^~~~~~
+      |                   _ultoa
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-tfj84a/CheckSymbolExists.c:25:19: note: each undeclared identifier is reported only once for each function it appears in
+ninja: build stopped: subcommand failed.
+
+
+File CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _uitoa
+  return ((int*)(&_uitoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test LIBC_HAS_ISINF failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lxy06i
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_865fa && [1/2] Building C object CMakeFiles/cmTC_865fa.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_865fa.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DLIBC_HAS_ISINF  -D_GNU_SOURCE=1 -Wfloat-conversion -Werror -fdiagnostics-color=always -o CMakeFiles/cmTC_865fa.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lxy06i/src.c
+In file included from C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lxy06i/src.c:2:
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lxy06i/src.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lxy06i/src.c:5:24: error: conversion from 'double' to 'float' may change value [-Werror=float-conversion]
+    5 |           return isinf(d);
+      |                        ^
+cc1.exe: all warnings being treated as errors
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+        #include <math.h>
+        int main() {
+          double d = 3.14159;
+          return isinf(d);
+        }
+      
+
+Performing C SOURCE FILE Test LIBC_HAS_ISINFF failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-bumnds
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_d95af && [1/2] Building C object CMakeFiles/cmTC_d95af.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_d95af.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DLIBC_HAS_ISINFF  -D_GNU_SOURCE=1 -Wfloat-conversion -Werror -fdiagnostics-color=always -o CMakeFiles/cmTC_d95af.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-bumnds/src.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-bumnds/src.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-bumnds/src.c:5:16: error: implicit declaration of function 'isinff' [-Werror=implicit-function-declaration]
+    5 |         return isinff(f);
+      |                ^~~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-bumnds/src.c:5:16: error: incompatible implicit declaration of built-in function 'isinff' [-Werror=builtin-declaration-mismatch]
+cc1.exe: all warnings being treated as errors
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+      #include <math.h>
+      int main() {
+        float f = 3.14159f;
+        return isinff(f);
+      }
+    
+
+Performing C SOURCE FILE Test LIBC_HAS_ISNAN failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-cra46a
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_382a3 && [1/2] Building C object CMakeFiles/cmTC_382a3.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_382a3.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DLIBC_HAS_ISNAN  -D_GNU_SOURCE=1 -Wfloat-conversion -Werror -fdiagnostics-color=always -o CMakeFiles/cmTC_382a3.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-cra46a/src.c
+In file included from C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-cra46a/src.c:2:
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-cra46a/src.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-cra46a/src.c:5:24: error: conversion from 'double' to 'float' may change value [-Werror=float-conversion]
+    5 |           return isnan(d);
+      |                        ^
+cc1.exe: all warnings being treated as errors
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+        #include <math.h>
+        int main() {
+          double d = 3.14159;
+          return isnan(d);
+        }
+      
+
+Performing C SOURCE FILE Test LIBC_HAS_ISNANF failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xaaasu
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_c4cff && [1/2] Building C object CMakeFiles/cmTC_c4cff.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_c4cff.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DLIBC_HAS_ISNANF  -D_GNU_SOURCE=1 -Wfloat-conversion -Werror -fdiagnostics-color=always -o CMakeFiles/cmTC_c4cff.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xaaasu/src.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xaaasu/src.c: In function 'main':
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xaaasu/src.c:5:16: error: implicit declaration of function 'isnanf' [-Werror=implicit-function-declaration]
+    5 |         return isnanf(f);
+      |                ^~~~~~
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-xaaasu/src.c:5:16: error: incompatible implicit declaration of built-in function 'isnanf' [-Werror=builtin-declaration-mismatch]
+cc1.exe: all warnings being treated as errors
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+      #include <math.h>
+      int main() {
+        float f = 3.14159f;
+        return isnanf(f);
+      }
+    
+
+Performing C SOURCE FILE Test HAVE_WINDOWS_GAMING_INPUT_H failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ao8ts2
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_efc5d && [1/2] Building C object CMakeFiles/cmTC_efc5d.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_efc5d.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_WINDOWS_GAMING_INPUT_H  -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_efc5d.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ao8ts2/src.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ao8ts2/src.c:3:14: fatal error: windows.gaming.input.h: No such file or directory
+    3 |     #include <windows.gaming.input.h>
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+    #define COBJMACROS
+    #include <windows.gaming.input.h>
+    static __x_ABI_CWindows_CGaming_CInput_CIGamepadStatics2 *s2;
+    int main(int argc, char **argv) { return 0; }
+
+Performing C SOURCE FILE Test HAVE_GAMEINPUT_H failed with the following output:
+Change Dir: C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3ewm9f
+
+Run Build Command(s):C:/Program Files/JetBrains/CLion 2023.1/bin/ninja/win/x64/ninja.exe cmTC_29012 && [1/2] Building C object CMakeFiles/cmTC_29012.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_29012.dir/src.c.obj 
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe -DHAVE_GAMEINPUT_H  -D_GNU_SOURCE=1 -fdiagnostics-color=always -o CMakeFiles/cmTC_29012.dir/src.c.obj -c C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3ewm9f/src.c
+C:/Users/Tao/CLionProjects/NES/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-3ewm9f/src.c:4:14: fatal error: gameinput.h: No such file or directory
+    4 |     #include <gameinput.h>
+      |              ^~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+    #include <stdbool.h>
+    #define COBJMACROS
+    #include <gameinput.h>
+    int main(int argc, char **argv) { return 0; }
+

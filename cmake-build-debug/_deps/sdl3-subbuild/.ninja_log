@@ -1,0 +1,21 @@
+# ninja log v5
+1	143	7635650930810265	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-mkdir	c14db36832b059e3
+1	143	7635650930810265	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-mkdir	c14db36832b059e3
+145	567553	7635656604896361	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-download	f9dfe2f31202b324
+145	567553	7635656604896361	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-download	f9dfe2f31202b324
+567553	568621	0	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-update	67e6e90a9ad7f84d
+567553	568621	0	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-update	67e6e90a9ad7f84d
+568622	568858	7635656617966042	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-patch	4d9d7aa63cbab761
+568622	568858	7635656617966042	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-patch	4d9d7aa63cbab761
+568859	568985	7635656619116023	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-configure	309a6b44ad67ea3d
+568859	568985	7635656619116023	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-configure	309a6b44ad67ea3d
+568986	569117	7635656620516064	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-build	a35c0eaad2cdb50a
+568986	569117	7635656620516064	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-build	a35c0eaad2cdb50a
+569118	569246	7635656621846032	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-install	55326315ec64e11a
+569118	569246	7635656621846032	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-install	55326315ec64e11a
+569247	569365	7635656623066096	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-test	113cf8d37b2e7f2
+569247	569365	7635656623066096	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-test	113cf8d37b2e7f2
+569366	570144	7635656630849428	CMakeFiles/sdl3-populate-complete	ce0bb60d496aa682
+569366	570144	7635656630849428	sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-done	ce0bb60d496aa682
+569366	570144	7635656630849428	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/CMakeFiles/sdl3-populate-complete	ce0bb60d496aa682
+569366	570144	7635656630849428	C:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-subbuild/sdl3-populate-prefix/src/sdl3-populate-stamp/sdl3-populate-done	ce0bb60d496aa682
