@@ -78,8 +78,6 @@ void Bus::latch_address(uint16_t address) {
     uint16_t ptr_lo = read(address);
     uint16_t ptr_hi = read(address + 1);
     last_address = (ptr_hi << 8) | ptr_lo;
-    if ((last_address & 0xFF00) != (ptr_hi << 8))
-        clock_cycles++;
 }
 
 void Bus::set_address_rel(uint16_t base) {
@@ -90,7 +88,11 @@ void Bus::set_address_rel(uint16_t base) {
 }
 
 void Bus::latch_data_rel(uint8_t rel) {
-    latch_data(last_address + rel);
+    auto addr = rel + last_data;
+    if((addr & 0xFF00) != (last_address & 0xFF00))
+        clock_cycles++;
+    last_address = addr & 0xFFFF;
+    latch_data();
 }
 
 void Bus::latch_address() {

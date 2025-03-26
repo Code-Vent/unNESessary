@@ -69,6 +69,7 @@ void CPU6502::push_pc() {
 void CPU6502::branch() {
     bus.set_address_rel(pc);
     pc = bus.address();
+    bus.clock_cycles++;
 }
 
 void CPU6502::pop_pc() {
@@ -228,17 +229,20 @@ void CPU6502::x_ind() {
     uint16_t hi = bus.read((uint16_t)(t + (uint16_t)x + 1) & 0x00FF);
     uint16_t addr_abs = (hi << 8) | lo;
     bus.latch_data(addr_abs);
+    bus.clock_cycles += 6;
 }
 
 void CPU6502::imm() {
     bus.latch_data(pc);
     pc++;
+    bus.clock_cycles += 2;
 }
 
 void CPU6502::abs() {
     bus.latch_address(pc);
     pc += 2;
     bus.latch_data();
+    bus.clock_cycles += 4;
 }
 
 void CPU6502::ind() {
@@ -246,6 +250,7 @@ void CPU6502::ind() {
     pc += 2;
     bus.latch_address();
     //bus.latch_data();
+    bus.clock_cycles += 5;
 }
 
 void CPU6502::ind_y() {
@@ -260,49 +265,57 @@ void CPU6502::ind_y() {
     if ((addr_abs & 0xFF00) != (hi << 8))
         bus.clock_cycles++;
     bus.latch_data(addr_abs);
+    bus.clock_cycles += 5;
 }
 
 void CPU6502::zp0() {
     uint16_t address = bus.read(pc);
     bus.latch_data(address & 0x00FF);
     pc++;
+    bus.clock_cycles += 3;
 }
 
 void CPU6502::zpx() {
     uint16_t address = bus.read(pc) + x;
     bus.latch_data(address & 0x00FF);
     pc++;
+    bus.clock_cycles += 4;
 }
 
 void CPU6502::zpy() {
     uint16_t address = bus.read(pc) + y;
     bus.latch_data(address & 0x00FF);
     pc++;
+    bus.clock_cycles += 4;
 }
 
 void CPU6502::aby() {
     bus.latch_address(pc);
     pc += 2;
     bus.latch_data_rel(y);
+    bus.clock_cycles += 4;
 }
 
 void CPU6502::abx() {
     bus.latch_address(pc);
     pc += 2;
     bus.latch_data_rel(x);
+    bus.clock_cycles += 4;
 }
 
 void CPU6502::rel() {
     bus.latch_data(pc);
     pc++;
+    bus.clock_cycles += 2;
 }
 
 void CPU6502::acc() {
     bus.latch_data(reg_base_addr + a_index);
+    bus.clock_cycles += 2;
 }
 
 void CPU6502::imp() {
-
+    bus.clock_cycles += 2;
 }
 
 
@@ -310,7 +323,7 @@ void CPU6502::imp() {
 
 
 void CPU6502::BRK() {
-    bus.clock_cycles += 7;
+    bus.clock_cycles += 5;
     pc += 2;
     push_pc();
     push(sr);
@@ -319,17 +332,16 @@ void CPU6502::BRK() {
 }
 
 void CPU6502::ORA() {
-    bus.clock_cycles += 6;
     a |= bus.data(); // Dummy ORA logic
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::invalid() {
-    bus.clock_cycles += 2; // Invalid Opcode
+    //bus.clock_cycles += 2; // Invalid Opcode
 }
 
 void CPU6502::SLO() {
-    bus.clock_cycles += 8;
+    bus.clock_cycles += 2;
     auto data = bus.data();
     (data & 0x80)? sr |= flags::CARRY : sr &= ~flags::CARRY;
     data <<= 1;
@@ -338,11 +350,11 @@ void CPU6502::SLO() {
 }
 
 void CPU6502::NOP() {
-    bus.clock_cycles += 2;
+    //bus.clock_cycles += 2;
 }
 
 void CPU6502::ASL() {
-    bus.clock_cycles += 5;
+    bus.clock_cycles += 2;
     sr |= ((uint8_t)(bus.data() >> 7) & flags::CARRY);
     auto data = bus.data() << 1;
     mod_zero_neg_flags(data);
@@ -350,75 +362,68 @@ void CPU6502::ASL() {
 }
 
 void CPU6502::PHP() {
-    bus.clock_cycles += 3;
+    bus.clock_cycles += 1;
     push(sr);
 }
 
 void CPU6502::ANC() {
-    bus.clock_cycles += 2;
     a &= bus.data();
     sr = (a == 0x80) ? sr | flags::CARRY : sr & ~flags::CARRY;
 }
 
 void CPU6502::BPL() {
-    bus.clock_cycles += 2;
     if (!(sr & flags::NEGATIVE))
         branch();
 }
 
 void CPU6502::CLC() {
-    bus.clock_cycles += 2;
     sr &= ~flags::CARRY;
 }
 
 void CPU6502::JSR() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 2;
     pc--;
     push_pc();
     pc = bus.address();
 }
 
 void CPU6502::AND() {
-    bus.clock_cycles += 6;
     a &= (bus.data() & 0x00FF);
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::PLP() {
-    bus.clock_cycles += 4;
+    bus.clock_cycles += 2;
     sr = pop();
 }
 
 void CPU6502::BMI() {
-    bus.clock_cycles += 2;
     if (sr & flags::NEGATIVE)
         branch();
 }
 
 void CPU6502::SEC() {
-    bus.clock_cycles += 2;
     sr |= flags::CARRY;
 }
 
 void CPU6502::RTI() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 4;
     sr = pop();
     pop_pc();
 }
 
 void CPU6502::EOR() {
-    bus.clock_cycles += 6;
     a ^= bus.data();
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::PHA() {
-    bus.clock_cycles += 3;
+    bus.clock_cycles += 1;
     push(a);
 }
 
 void CPU6502::LSR() {
-    bus.clock_cycles += 5;
+    bus.clock_cycles += 2;
     sr &= ~flags::CARRY;
     sr ^= (bus.data() & flags::CARRY);
     auto temp = bus.data() >> 1;
@@ -427,18 +432,16 @@ void CPU6502::LSR() {
 }
 
 void CPU6502::JMP() {
-    bus.clock_cycles += 3;
     pc = bus.address();
 }
 
 void CPU6502::RTS() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 4;
     pop_pc();
     pc++;
 }
 
 void CPU6502::ADC() {
-    bus.clock_cycles += 6;
     uint8_t carry = (sr & flags::CARRY);
     auto result = a + bus.data() + carry;
     if (result > 0xFF) sr |= flags::CARRY;
@@ -448,13 +451,13 @@ void CPU6502::ADC() {
 }
 
 void CPU6502::PLA() {
-    bus.clock_cycles += 4;
+    bus.clock_cycles += 2;
     a = pop();
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::ROR() {
-    bus.clock_cycles += 5;
+    bus.clock_cycles += 2;
     auto temp = bus.data() & 0xFEFF;
     temp ^= ((sr & flags::CARRY) << 8);
     sr &= ~flags::CARRY;
@@ -465,128 +468,110 @@ void CPU6502::ROR() {
 }
 
 void CPU6502::STA() {
-    bus.clock_cycles += 6;
     // Store accumulator to memory
     bus.write(a);
 }
 
 void CPU6502::LDA() {
-    bus.clock_cycles += 6;
     a = bus.data();
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::CMP() {
-    bus.clock_cycles += 6;
     auto result = a - bus.data();
     mod_zero_neg_carry_flags(result);
 }
 
 void CPU6502::INC() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 2;
     bus.inc();
     mod_zero_neg_flags(bus.data());
     bus.write();
 }
 
 void CPU6502::SED() {
-    bus.clock_cycles += 2;
     sr |= flags::DECIMAL;
 }
 
 void CPU6502::BCC() {
-    bus.clock_cycles += 2;
     if (!(sr & flags::CARRY))
         branch();
 }
 
 void CPU6502::BCS() {
-    bus.clock_cycles += 2;
     if (sr & flags::CARRY)
         branch();
 }
 
 void CPU6502::BNE() {
-    bus.clock_cycles += 2;
     if (!(sr & flags::ZERO))
         branch();
 }
 
 void CPU6502::BEQ() {
-    bus.clock_cycles += 2;
     if (sr & flags::ZERO)
         branch();
 }
 
 void CPU6502::SAX() {
-    bus.clock_cycles += 4;
     a &= x;
     bus.write(a);
 }
 
 void CPU6502::AHX() {
-    bus.clock_cycles += 4;
     uint8_t result = a & x & (pc >> 8);
     bus.write(result);
 }
 
 void CPU6502::LAX() {
-    bus.clock_cycles += 4;
     a = x = bus.data();
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::DCP() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 2;
     bus.dec();
     CMP();
 }
 
 void CPU6502::ISB() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 2;
     bus.inc();
     SBC();
 }
 
 void CPU6502::TAS() {
-    bus.clock_cycles += 4;
     sp = a & x & (pc >> 8);
     bus.write(sp);
 }
 
 void CPU6502::LAS() {
-    bus.clock_cycles += 4;
     a = x = sp &= bus.data();
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::AXS() {
-    bus.clock_cycles += 4;
     x &= a;
     x -= bus.data();
     mod_zero_neg_carry_flags(x);
 }
 
 void CPU6502::SHY() {
-    bus.clock_cycles += 4;
     uint8_t result = y & ((pc >> 8) + 1);
     bus.write(result);
 }
 
 void CPU6502::SHX() {
-    bus.clock_cycles += 4;
     uint8_t result = x & ((pc >> 8) + 1);
     bus.write(result);
 }
 
 void CPU6502::RLA() {
-    bus.clock_cycles += 8;
     ROL();
     AND();
 }
 
 void CPU6502::BIT() {
-    bus.clock_cycles += 3;
     auto result = a & bus.data();
     mod_zero(result);
     sr |= (bus.data() & flags::OVERFLOW & flags::NEGATIVE);
@@ -603,19 +588,16 @@ void CPU6502::ROL() {
 }
 
 void CPU6502::SRE() {
-    bus.clock_cycles += 8;
     LSR();
     EOR();
 }
 
 void CPU6502::ALR() {
-    bus.clock_cycles += 2;
     AND();
     LSR();
 }
 
 void CPU6502::BVC() {
-    bus.clock_cycles += 2;
     if (!(sr & flags::OVERFLOW))
         branch();
 }
@@ -626,142 +608,119 @@ void CPU6502::CLI() {
 }
 
 void CPU6502::RRA() {
-    bus.clock_cycles += 8;
     ROR();
     ADC();
 }
 
 void CPU6502::ARR() {
-    bus.clock_cycles += 2;
     AND();
     ROR();
 }
 
 void CPU6502::BVS() {
-    bus.clock_cycles += 2;
     if (sr & flags::OVERFLOW)
         branch();
 }
 
 void CPU6502::SEI() {
-    bus.clock_cycles += 2;
     sr |= 0x04;
 }
 
 void CPU6502::STY() {
-    bus.clock_cycles += 3;
     // Store Y register to memory
     bus.write(y);
 }
 
 void CPU6502::STX() {
-    bus.clock_cycles += 3;
     // Store X register to memory
     bus.write(x);
 }
 
 void CPU6502::DEY() {
-    bus.clock_cycles += 2;
     y--;
     mod_zero_neg_flags(y);
 }
 
 void CPU6502::TXA() {
-    bus.clock_cycles += 2;
     a = x;
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::TYA() {
-    bus.clock_cycles += 2;
     a = y;
     mod_zero_neg_flags(a);
 }
 
 void CPU6502::TXS() {
-    bus.clock_cycles += 2;
     sp = x;
 }
 
 void CPU6502::LDY() {
-    bus.clock_cycles += 3;
     y = bus.data();
     mod_zero_neg_flags(y);
 }
 
 void CPU6502::LDX() {
-    bus.clock_cycles += 3;
     x = bus.data();
     mod_zero_neg_flags(x);
 }
 
 void CPU6502::XAA() {
-    bus.clock_cycles += 2;
     a &= bus.data();
     TAX();
 }
 
 void CPU6502::TAX() {
-    bus.clock_cycles += 2;
     x = a;
     mod_zero_neg_flags(x);
 }
 
 void CPU6502::TAY() {
-    bus.clock_cycles += 2;
     y = a;
     mod_zero_neg_flags(y);
 }
 
 void CPU6502::CLV() {
-    bus.clock_cycles += 2;
     sr &= ~flags::OVERFLOW;
 }
 
 void CPU6502::TSX() {
-    bus.clock_cycles += 2;
     x = sp;
     mod_zero_neg_flags(x);
 }
 
 void CPU6502::DEC() {
-    bus.clock_cycles += 6;
+    bus.clock_cycles += 2;
     bus.dec();
     mod_zero_neg_flags(bus.data());
     bus.write();
 }
 
 void CPU6502::INY() {
-    bus.clock_cycles += 2;
     y++;
     mod_zero_neg_flags(y);
 }
 
 void CPU6502::DEX() {
-    bus.clock_cycles += 2;
     x--;
     mod_zero_neg_flags(x);
 }
 
 void CPU6502::CLD() {
-    bus.clock_cycles += 2;
     sr &= ~flags::DECIMAL;
 }
 
 void CPU6502::INX() {
-    bus.clock_cycles += 2;
     x++;
     mod_zero_neg_flags(x);
 }
 
 void CPU6502::CPY() {
-    bus.clock_cycles += 2;
     auto result = y - bus.data();
     mod_zero_neg_carry_flags(result);
 }
 
 void CPU6502::CPX() {
-    bus.clock_cycles += 2;
     auto result = x - bus.data();
     mod_zero_neg_carry_flags(result);
 }
