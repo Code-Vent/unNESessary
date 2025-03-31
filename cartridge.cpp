@@ -79,14 +79,15 @@ uint8_t Cartridge::load(const std::string &file_name) {
         uint16_t prg_upper = prg_size - 1;
         uint16_t chr_upper = chr_size - 1;
 
-        prg = new Memory({
-                                             .lower = 0,
-                                             .upper = prg_upper
-                                     }, prg_size);
-        chr = new Memory({
-                                            .lower = 0,
-                                            .upper = chr_upper
-                                    }, chr_size);
+        prg = new Memory(
+        {.lower = 0, .upper = prg_upper},
+           prg_size
+        );
+
+        chr = new Memory(
+        {.lower = 0, .upper = chr_upper},
+           chr_size
+        );
 
         //auto len = main_bus->bytes->bytes.size();
         ifs.read(prg->ptr(), prg_size);
