@@ -10,6 +10,7 @@
 #include<vector>
 
 class Memory : public Peripheral {
+public:
     std::vector<uint8_t> bytes;
 public:
     Memory(Range address, uint16_t size, uint16_t address_mask=0xFFFF);
@@ -17,6 +18,7 @@ public:
     void write(uint16_t address, uint8_t data) override;
     uint8_t& operator[](int index);
     uint8_t operator[](int index) const;
+    char* ptr(){return (char*)bytes.data();}
     void discard();
 };
 

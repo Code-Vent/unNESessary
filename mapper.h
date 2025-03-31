@@ -1,9 +1,14 @@
 #ifndef NES_MAPPER_H
 #define NES_MAPPER_H
 #include"peripheral.h"
+#include "memory.h"
+#include<string>
+#include<fstream>
+#include<iostream>
 
 class Connection : public Peripheral{
 public:
+    Memory** bytes;
     Connection(Range address, uint16_t address_mask)
     : Peripheral(address, address_mask)
     {}
@@ -11,25 +16,33 @@ public:
 
 class Mapper
 {
-protected:
-    Connection* main_bus;
-    Connection* ppu_bus;
 public:
     Mapper(){
-        main_bus = nullptr;
-        ppu_bus = nullptr;
     }
-    virtual Peripheral& get_prg_rom_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
-    virtual Peripheral& get_chr_ram_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
-    virtual ~Mapper(){
-        if(main_bus != nullptr)delete main_bus;
-        if(ppu_bus != nullptr)delete ppu_bus;
+
+    virtual Connection* get_prg_rom_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
+    virtual Connection* get_chr_ram_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
+};
+
+
+class PRG_Conn_Template : public Connection{
+public:
+    explicit PRG_Conn_Template(Range address, uint16_t address_mask)
+    : Connection(address, address_mask)
+    {}
+
+    void write(uint16_t address, uint8_t data) override{
+        auto i = 0;
+    }
+
+    int8_t read(uint16_t address) override{
+        return 0;
     }
 };
 
-class PRG_Conn : public Connection{
+class CHR_Conn_Template : public Connection{
 public:
-    explicit PRG_Conn(Range address, uint16_t address_mask)
+    explicit CHR_Conn_Template(Range address, uint16_t address_mask)
     : Connection(address, address_mask)
     {}
 
@@ -42,38 +55,19 @@ public:
     }
 };
 
-class CHR_Conn : public Connection{
-public:
-    explicit CHR_Conn(Range address, uint16_t address_mask)
-    : Connection(address, address_mask)
-    {}
-
-    void write(uint16_t address, uint8_t data) override{
-
-    }
-
-    int8_t read(uint16_t address) override{
-        return 0;
-    }
-};
-
-class Mapper00 : public Mapper{
+class Mapper_Template : public Mapper{
 
 public:
-    explicit Mapper00()
+    explicit Mapper_Template()
     :Mapper()
     {}
 
-    Peripheral & get_chr_ram_conn(Range address, uint16_t address_mask) override{
-        if(ppu_bus == nullptr)
-            ppu_bus = new CHR_Conn(address, address_mask);
-        return *ppu_bus;
+    Connection* get_chr_ram_conn(Range address, uint16_t address_mask) override{
+        return new CHR_Conn_Template(address, address_mask);
     }
 
-    Peripheral & get_prg_rom_conn(Range address, uint16_t address_mask) override{
-        if(main_bus == nullptr)
-            main_bus = new PRG_Conn(address, address_mask);
-        return *main_bus;
+    Connection* get_prg_rom_conn(Range address, uint16_t address_mask) override{
+        return new PRG_Conn_Template(address, address_mask);
     }
 };
 

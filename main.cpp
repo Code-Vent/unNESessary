@@ -1,12 +1,12 @@
 #include <iostream>
+#include <fstream>
 #include"nes.h"
 #include "mapper.h"
 #include<bitset>
 
 
 int main() {
-    Mapper00 m;
-    Nes nes(&m);
+    Nes nes("../nestest.nes");
     nes.cpu_test();
     return 0;
 }

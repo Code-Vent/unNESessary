@@ -8,6 +8,7 @@
 #include "mapper.h"
 #include "ppu2C02.h"
 //#include"apu2A03.h"
+#include<string>
 
 class Nes {
 
@@ -19,7 +20,8 @@ class Nes {
     //APU2A03* apu;
     PPU2C02 ppu;
 public:
-    Nes(Mapper* m = nullptr);
+    Nes(const std::string& file_name);
+    ~Nes();
     void run();
     [[maybe_unused]]
     void cpu_test();

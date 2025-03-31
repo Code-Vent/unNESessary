@@ -12,9 +12,14 @@
 
 class Cartridge {
     Mapper* mp;
+    Memory* prg;
+    Memory* chr;
+    Connection* prg_conn;
+    Connection* chr_conn;
+    uint8_t load(const std::string& file_name);
 public:
-    Cartridge(Bus& main_bus, Range pgr_rom, Bus& ppu_bus, Range chr_ram, Mapper* mapper=nullptr);
-
+    Cartridge(Bus& main_bus, Range pgr_rom, Bus& ppu_bus, Range chr_ram, const std::string& file_name);
+    ~Cartridge();
 };
 
 #endif //NES_CARTRIGE_H
