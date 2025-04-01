@@ -28,7 +28,7 @@ else()
     message(STATUS "Using local SDL3")
 endif()
 
-add_executable(NES main.cpp peripheral.h peripheral.cpp bus.cpp bus.h memory.cpp memory.h nes.cpp nes.h cpu6502.cpp cpu6502.h cartridge.cpp cartridge.h mapper.h ppu2C02.cpp ppu2C02.h)
+add_executable(NES main.cpp peripheral.h peripheral.cpp bus.cpp bus.h memory.cpp memory.h nes.cpp nes.h cpu6502.cpp cpu6502.h cartridge.cpp cartridge.h mapper.h ppu2C02.cpp ppu2C02.h nrom.h nrom.h)
 
 # set the include directory
 target_include_directories(NES PUBLIC ${SDL3_INCLUDE_DIRS})

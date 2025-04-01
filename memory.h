@@ -20,6 +20,8 @@ public:
     uint8_t operator[](int index) const;
     char* ptr(){return (char*)bytes.data();}
     void discard();
+    Range& get_addr_range();
+    uint16_t& get_addr_mask();
 };
 
 #endif //NES_MEMORY_H

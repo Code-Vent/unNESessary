@@ -31,3 +31,11 @@ uint8_t Memory::operator[](int index) const
 void Memory::discard() {
     bytes.clear();
 }
+
+uint16_t &Memory::get_addr_mask() {
+    return address_mask;
+}
+
+Range &Memory::get_addr_range() {
+    return addr_range;
+}

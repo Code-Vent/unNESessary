@@ -6,7 +6,7 @@
 
 
 int main() {
-    Nes nes("../nestest.nes");
+    Nes nes("../mario.nes");
     nes.cpu_test();
     return 0;
 }

@@ -13,7 +13,7 @@ struct Range{
 
 class Peripheral {
 protected:
-    uint16_t start_address, end_address;
+    Range addr_range;
     uint16_t address_mask;
 public:
     Peripheral(Range address, uint16_t address_mask);
@@ -21,7 +21,7 @@ public:
     virtual int8_t read(uint16_t address) { return 0; }
     bool containsAddress(uint16_t address);
     inline uint16_t index(uint16_t address){
-        return (address - start_address) & address_mask;
+        return (address - addr_range.lower) & address_mask;
     }
 };
 

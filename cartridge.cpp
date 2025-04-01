@@ -1,34 +1,28 @@
 #include "cartridge.h"
 #include <cassert>
+#include"nrom.h"
 
-typedef struct
-{
-    char name[4];
-    uint8_t prg_rom_chunks;
-    uint8_t chr_rom_chunks;
-    uint8_t mapper1;
-    uint8_t mapper2;
-    uint8_t prg_ram_size;
-    uint8_t tv_system1;
-    uint8_t tv_system2;
-    char unused[5];
-} Header;
-static Header header;
 
 Cartridge::Cartridge(Bus& main_bus, Range pgr_addr, Bus& ppu_bus, Range chr_addr, const std::string& file_name)
 {
-    //assert(mapper != nullptr);
-    static Mapper_Template mapper;
-    mp = &mapper;
-    auto m_id = load(file_name);
-    prg_conn = mp->get_prg_rom_conn(pgr_addr);
-    chr_conn = mp->get_chr_ram_conn(chr_addr);
+    Header header;
+    auto m_id = load(file_name, header);
+    switch (m_id) {
+        case 0:
+            mapper = new Mapper_NROM;
+            break;
+        default:
+            mapper = new Mapper_Template;
+    }
+    prg_conn = mapper->get_prg_rom_conn(pgr_addr);
+    chr_conn = mapper->get_chr_ram_conn(chr_addr);
     main_bus.add(*prg_conn);
     ppu_bus.add(*chr_conn);
 
     prg_conn->bytes = &prg;
     chr_conn->bytes = &chr;
 
+    mapper->map(header);
     return;
 }
 
@@ -39,7 +33,7 @@ Cartridge::~Cartridge() {
     delete chr_conn;
 }
 
-uint8_t Cartridge::load(const std::string &file_name) {
+uint8_t Cartridge::load(const std::string &file_name, Header& header) {
     uint8_t nMapperID = 99;
     std::ifstream ifs;
     ifs.open(file_name, std::ifstream::binary);
