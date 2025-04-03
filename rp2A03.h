@@ -9,6 +9,8 @@
 
 class RP2A03 : public Peripheral{
     Bus& bus;
+    friend class Renderer;
+    friend class AudioPlayer;
 public:
     RP2A03(Bus& main_bus, Range address);
 
