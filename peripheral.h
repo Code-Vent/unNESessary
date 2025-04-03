@@ -7,16 +7,16 @@
 #include<cstdint>
 
 struct Range{
-    uint16_t lower;
-    uint16_t upper;
+    uint32_t lower;
+    uint32_t upper;
 };
 
 class Peripheral {
 protected:
     Range addr_range;
-    uint16_t address_mask;
+    uint32_t address_mask;
 public:
-    Peripheral(Range address, uint16_t address_mask);
+    Peripheral(Range address, uint32_t address_mask);
     virtual void write(uint16_t address, uint8_t data) {}
     virtual int8_t read(uint16_t address) { return 0; }
     bool containsAddress(uint16_t address);

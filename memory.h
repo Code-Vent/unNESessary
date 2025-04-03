@@ -16,12 +16,12 @@ public:
     Memory(Range address, uint16_t size, uint16_t address_mask=0xFFFF);
     int8_t read(uint16_t address) override;
     void write(uint16_t address, uint8_t data) override;
-    uint8_t& operator[](int index);
-    uint8_t operator[](int index) const;
+    uint8_t& operator[](uint32_t index);
+    uint8_t operator[](uint32_t index) const;
     char* ptr(){return (char*)bytes.data();}
     void discard();
     Range& get_addr_range();
-    uint16_t& get_addr_mask();
+    uint32_t& get_addr_mask();
 };
 
 #endif //NES_MEMORY_H

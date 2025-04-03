@@ -18,12 +18,12 @@ void Memory::write(uint16_t address, uint8_t data) {
     bytes.at(index(address)) = data;
 }
 
-uint8_t& Memory::operator[](int index)
+uint8_t& Memory::operator[](uint32_t index)
 {
     return bytes.at(index & address_mask);
 }
 
-uint8_t Memory::operator[](int index) const
+uint8_t Memory::operator[](uint32_t index) const
 {
     return bytes.at(index & address_mask);
 }
@@ -32,7 +32,7 @@ void Memory::discard() {
     bytes.clear();
 }
 
-uint16_t &Memory::get_addr_mask() {
+uint32_t &Memory::get_addr_mask() {
     return address_mask;
 }
 

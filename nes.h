@@ -14,15 +14,15 @@ class Nes {
 
     Bus main_bus;
     Bus ppu_bus;
-    Bus oam_bus;
     CPU6502 cpu;
     Cartridge cart;
     //APU2A03* apu;
     PPU2C02 ppu;
+    void _run();
 public:
-    Nes(const std::string& file_name);
-    ~Nes();
-    void run();
+    Nes();
+    ~Nes() = default;
+    void run(const std::string& file_name);
     [[maybe_unused]]
     void cpu_test();
     CPU6502& get_cpu(){return cpu;}

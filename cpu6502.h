@@ -8,6 +8,7 @@
 #include<cstdint>
 #include <iostream>
 #include"bus.h"
+#include "rp2A03.h"
 
 constexpr uint16_t reg_base_addr = 0x800;
 constexpr uint8_t a_index = 0;
@@ -28,6 +29,8 @@ protected:
 
     uint16_t pc;
     Bus& bus;
+
+    RP2A03 co_proc;
 
     static Instruction lookupTable[16][16];
     enum flags {

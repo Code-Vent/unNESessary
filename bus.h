@@ -6,6 +6,7 @@
 #define NES_BUS_H
 #include<cstdint>
 #include<vector>
+#include<iostream>
 #include"peripheral.h"
 
 class Bus {
@@ -16,7 +17,7 @@ class Bus {
 
 public:
     uint8_t clock_cycles;
-    Bus() = default;
+    Bus();
     void add(Peripheral&);
     void remove(uint16_t address);
     void write(uint16_t address, uint8_t data);
@@ -35,7 +36,12 @@ public:
     void latch_address();
     inline uint16_t address() { return last_address; }
     inline int8_t  data() { return last_data; }
-    inline bool no_error() { return !error; }
+    inline bool no_error() {
+        if(error)
+            std::cerr << std::hex << "Last Address = " << last_address <<
+            "\nLast Data = " << (int)last_data << std::endl;
+        return !error;
+    }
     void print_u8(uint16_t address);
     void print_u16(uint16_t address);
 };

@@ -6,6 +6,13 @@
 
 using namespace std;
 
+Bus::Bus()
+: pp()
+{
+    error = false;
+    last_address = last_data = 0;
+}
+
 Peripheral* Bus::find(uint16_t address) {
     for (auto p : pp) {
         if (p->containsAddress(address))
@@ -40,6 +47,10 @@ void Bus::write() {
 }
 
 int8_t Bus::read(uint16_t address) {
+    if(address == 0x2000)
+    {
+        auto i = 0;
+    }
     auto p = find(address);
     if (p != nullptr)
         return p->read(address);

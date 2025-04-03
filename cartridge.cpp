@@ -3,10 +3,34 @@
 #include"nrom.h"
 
 
-Cartridge::Cartridge(Bus& main_bus, Range pgr_addr, Bus& ppu_bus, Range chr_addr, const std::string& file_name)
+Cartridge::Cartridge(Bus& mb, Range pgr, Bus& pb, Range chr)
+:main_bus(mb), prg_addr(pgr), ppu_bus(pb), chr_addr(chr)
 {
+    clear();
+}
+
+void Cartridge::clear() {
+    mapper = nullptr;
+    prg_rom = nullptr;
+    prg_ram = nullptr;
+    chr = nullptr;
+    prg_rom_conn = nullptr;
+    prg_ram_conn = nullptr;
+    chr_conn = nullptr;
+}
+
+Cartridge::~Cartridge() {
+    if(prg_rom)delete prg_rom;
+    if(chr)delete chr;
+    if(prg_rom_conn)delete prg_rom_conn;
+    if(chr_conn)delete chr_conn;
+    if(prg_ram_conn)delete prg_ram_conn;
+    if(prg_ram)delete prg_ram;
+}
+
+void Cartridge::load(const std::string &file_name) {
     Header header;
-    auto m_id = load(file_name, header);
+    auto m_id = _load(file_name, header);
     switch (m_id) {
         case 0:
             mapper = new Mapper_NROM;
@@ -14,26 +38,28 @@ Cartridge::Cartridge(Bus& main_bus, Range pgr_addr, Bus& ppu_bus, Range chr_addr
         default:
             mapper = new Mapper_Template;
     }
-    prg_conn = mapper->get_prg_rom_conn(pgr_addr);
-    chr_conn = mapper->get_chr_ram_conn(chr_addr);
-    main_bus.add(*prg_conn);
+    prg_rom_conn = mapper->get_prg_rom_conn(prg_addr);
+    if(header.prg_ram_size != 0)
+        prg_ram_conn = mapper->get_prg_ram_conn(prg_addr);
+    if(header.chr_rom_chunks == 0)
+        chr_conn = mapper->get_chr_ram_conn(chr_addr);
+    else
+        chr_conn = mapper->get_chr_rom_conn(chr_addr);
+    main_bus.add(*prg_rom_conn);
+    if(prg_ram_conn)
+        main_bus.add(*prg_rom_conn);
     ppu_bus.add(*chr_conn);
 
-    prg_conn->bytes = &prg;
+    prg_rom_conn->bytes = &prg_rom;
+    if(prg_ram_conn)
+        prg_ram_conn->bytes = &prg_ram;
     chr_conn->bytes = &chr;
 
     mapper->map(header);
     return;
 }
 
-Cartridge::~Cartridge() {
-    delete prg;
-    delete chr;
-    delete prg_conn;
-    delete chr_conn;
-}
-
-uint8_t Cartridge::load(const std::string &file_name, Header& header) {
+uint8_t Cartridge::_load(const std::string &file_name, Header& header) {
     uint8_t nMapperID = 99;
     std::ifstream ifs;
     ifs.open(file_name, std::ifstream::binary);
@@ -48,43 +74,40 @@ uint8_t Cartridge::load(const std::string &file_name, Header& header) {
             ifs.seekg(512, std::ios_base::cur);
 
         // Determine Mapper ID
-        nMapperID = ((header.mapper2 >> 4) << 4) | (header.mapper1 >> 4);
+        nMapperID = (header.mapper2 & 0xF0) | (header.mapper1 >> 4);
         //auto hw_mirror = (header.mapper1 & 0x01) ? VERTICAL : HORIZONTAL;
 
-        // "Discover" File Format
-        uint8_t nFileType = 1;
-        if ((header.mapper2 & 0x0C) == 0x08) nFileType = 2;
 
-        int prg_size = 0, chr_size = 0;
-        if (nFileType == 0)
-        {
+        int prg_rom_size = 0, prg_ram_size = 0, chr_size = 0;
 
-        }
-        else if (nFileType == 1) {
-            prg_size = header.prg_rom_chunks * 16384;
+        prg_rom_size = header.prg_rom_chunks * 16384;
+        prg_ram_size = header.prg_ram_size * 8192;
+        if(header.chr_rom_chunks != 0)
             chr_size = header.chr_rom_chunks * 8192;
-        }
-        else if (nFileType == 2) {
-            prg_size = (((header.prg_ram_size & 0x07) << 8) | header.prg_rom_chunks) * 16384;
-            chr_size = (((header.prg_ram_size & 0x38) << 8) | header.chr_rom_chunks) * 8192;
-        }
-        else {
-        }
-        uint16_t prg_upper = prg_size - 1;
-        uint16_t chr_upper = chr_size - 1;
+        else
+            chr_size = 8192;
 
-        prg = new Memory(
-        {.lower = 0, .upper = prg_upper},
-           prg_size
+        uint32_t prg_rom_upper = prg_rom_size - 1;
+        uint32_t prg_ram_upper = prg_ram_size - 1;
+        uint32_t chr_upper = chr_size - 1;
+
+        prg_rom = new Memory(
+        {.lower = 0, .upper = prg_rom_upper},
+           prg_rom_size
         );
+
+        if(prg_ram_size != 0)
+            prg_ram = new Memory(
+                    {.lower = 0, .upper = prg_ram_upper},
+                    prg_ram_size
+            );
 
         chr = new Memory(
         {.lower = 0, .upper = chr_upper},
            chr_size
         );
 
-        //auto len = main_bus->bytes->bytes.size();
-        ifs.read(prg->ptr(), prg_size);
+        ifs.read(prg_rom->ptr(), prg_rom_size);
         ifs.read(chr->ptr(), chr_size);
 
         ifs.close();

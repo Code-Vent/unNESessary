@@ -4,7 +4,7 @@
 #include"peripheral.h"
 
 
-Peripheral::Peripheral(Range address, uint16_t mask)
+Peripheral::Peripheral(Range address, uint32_t mask)
         : addr_range(address), address_mask(mask)
 {}
 

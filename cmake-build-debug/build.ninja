@@ -113,6 +113,14 @@ build CMakeFiles/NES.dir/ppu2C02.cpp.obj: CXX_COMPILER__NES_Debug C$:/Users/Tao/
   OBJECT_DIR = CMakeFiles\NES.dir
   OBJECT_FILE_DIR = CMakeFiles\NES.dir
 
+build CMakeFiles/NES.dir/rp2A03.cpp.obj: CXX_COMPILER__NES_Debug C$:/Users/Tao/CLionProjects/NES/rp2A03.cpp || cmake_object_order_depends_target_NES
+  DEFINES = -DSDL_MAIN_USE_CALLBACKS
+  DEP_FILE = CMakeFiles\NES.dir\rp2A03.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
+  INCLUDES = -IC:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-build/include-revision -IC:/Users/Tao/CLionProjects/NES/cmake-build-debug/_deps/sdl3-src/include
+  OBJECT_DIR = CMakeFiles\NES.dir
+  OBJECT_FILE_DIR = CMakeFiles\NES.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target NES
@@ -121,7 +129,7 @@ build CMakeFiles/NES.dir/ppu2C02.cpp.obj: CXX_COMPILER__NES_Debug C$:/Users/Tao/
 #############################################
 # Link the executable NES.exe
 
-build NES.exe: CXX_EXECUTABLE_LINKER__NES_Debug CMakeFiles/NES.dir/main.cpp.obj CMakeFiles/NES.dir/peripheral.cpp.obj CMakeFiles/NES.dir/bus.cpp.obj CMakeFiles/NES.dir/memory.cpp.obj CMakeFiles/NES.dir/nes.cpp.obj CMakeFiles/NES.dir/cpu6502.cpp.obj CMakeFiles/NES.dir/cartridge.cpp.obj CMakeFiles/NES.dir/ppu2C02.cpp.obj | _deps/sdl3-build/libSDL3.dll.a _deps/sdl3-src/src/dynapi/SDL_dynapi.sym || _deps/sdl3-build/SDL3.dll
+build NES.exe: CXX_EXECUTABLE_LINKER__NES_Debug CMakeFiles/NES.dir/main.cpp.obj CMakeFiles/NES.dir/peripheral.cpp.obj CMakeFiles/NES.dir/bus.cpp.obj CMakeFiles/NES.dir/memory.cpp.obj CMakeFiles/NES.dir/nes.cpp.obj CMakeFiles/NES.dir/cpu6502.cpp.obj CMakeFiles/NES.dir/cartridge.cpp.obj CMakeFiles/NES.dir/ppu2C02.cpp.obj CMakeFiles/NES.dir/rp2A03.cpp.obj | _deps/sdl3-build/libSDL3.dll.a _deps/sdl3-src/src/dynapi/SDL_dynapi.sym || _deps/sdl3-build/SDL3.dll
   FLAGS = -g
   LINK_LIBRARIES = _deps/sdl3-build/libSDL3.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\NES.dir

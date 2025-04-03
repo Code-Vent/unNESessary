@@ -40,7 +40,8 @@ public:
 class Mapper
 {
 protected:
-    Connection* prg_conn;
+    Connection* prg_rom_conn;
+    Connection* prg_ram_conn;
     Connection* chr_conn;
 public:
 
@@ -52,6 +53,8 @@ public:
     }
 
     virtual Connection* get_prg_rom_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
+    virtual Connection* get_chr_rom_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
+    virtual Connection* get_prg_ram_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
     virtual Connection* get_chr_ram_conn(Range address, uint16_t address_mask=0xFFFF) = 0;
 };
 
@@ -77,14 +80,24 @@ public:
     :Mapper()
     {}
 
-    Connection* get_chr_ram_conn(Range address, uint16_t address_mask) override{
+    Connection* get_chr_rom_conn(Range address, uint16_t address_mask) override{
         chr_conn = new CHR_Conn_Template(address, address_mask);
         return chr_conn;
     }
 
     Connection* get_prg_rom_conn(Range address, uint16_t address_mask) override{
-        prg_conn = new PRG_Conn_Template(address, address_mask);
-        return prg_conn;
+        prg_rom_conn = new PRG_Conn_Template(address, address_mask);
+        return prg_rom_conn;
+    }
+
+    Connection* get_chr_ram_conn(Range address, uint16_t address_mask) override{
+        chr_conn = new CHR_Conn_Template(address, address_mask);
+        return chr_conn;
+    }
+
+    Connection* get_prg_ram_conn(Range address, uint16_t address_mask) override{
+        prg_ram_conn = new PRG_Conn_Template(address, address_mask);
+        return prg_ram_conn;
     }
 };
 

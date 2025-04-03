@@ -35,7 +35,8 @@ CPU6502::CPU6502(Bus& main_bus, Memory&& r)
         : ram(std::move(r)),
         stack({.lower=0, .upper=0xFF}, 0x100),
         registers({.lower=reg_base_addr, .upper=reg_base_addr+4}, 5),
-        bus(main_bus)
+        bus(main_bus),
+        co_proc(main_bus, {.lower = 0x4000, .upper = 0x401F})
 {
     bus.clock_cycles = 0;
     a = 0; // Accumulator
@@ -47,6 +48,7 @@ CPU6502::CPU6502(Bus& main_bus, Memory&& r)
     error = false;
     bus.add(registers);
     bus.add(ram);
+    bus.add(co_proc);
 }
 
 uint8_t CPU6502::pop() {
@@ -208,6 +210,7 @@ bool CPU6502::execute() {
     call_addr_mode(opcode);
     uint8_t row = (opcode & 0xF0) >> 4;
     uint8_t col = (opcode & 0x0F);
+    //std::cout << std::hex << "Last Opcode = " << (int)opcode << std::endl;
     (this->*lookupTable[row][col].instruction)();
     return !error;
 }
@@ -241,7 +244,6 @@ void CPU6502::imm() {
 void CPU6502::abs() {
     bus.latch_address(pc);
     pc += 2;
-    bus.latch_data();
     bus.clock_cycles += 4;
 }
 
