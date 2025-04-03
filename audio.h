@@ -1,5 +1,5 @@
 //
-// Created by Tao on 4/3/2025.
+// Created by Hamid on 4/3/2025.
 //
 
 #ifndef NES_AUDIO_H
