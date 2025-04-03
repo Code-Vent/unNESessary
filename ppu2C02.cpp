@@ -7,9 +7,12 @@
 #include<iostream>
 
 PPU2C02::PPU2C02(Bus& ppu_bus, Range address, uint32_t address_mask)
-: Peripheral(address, address_mask), bus(ppu_bus), oam({.lower = 0, .upper = 0xFF}, 0x100)
+: Peripheral(address, address_mask), bus(ppu_bus), oam({.lower = 0, .upper = 0xFF}, 0x100),
+  vram({.lower = 0x2000, .upper = 0x3EFF}, 0x1000, 0x2FFF),
+  palette({.lower = 0x3F00, .upper = 0x3FFF}, 0x0020, 0x3F1F)
 {
-
+    bus.add(vram);
+    bus.add(palette);
 }
 
 void PPU2C02::write(uint16_t address, uint8_t data) {

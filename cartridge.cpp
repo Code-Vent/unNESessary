@@ -48,6 +48,7 @@ void Cartridge::load(const std::string &file_name) {
     main_bus.add(*prg_rom_conn);
     if(prg_ram_conn)
         main_bus.add(*prg_rom_conn);
+
     ppu_bus.add(*chr_conn);
 
     prg_rom_conn->bytes = &prg_rom;

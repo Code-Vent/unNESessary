@@ -10,8 +10,10 @@
 #include"memory.h"
 
 class PPU2C02 : public Peripheral{
-    Bus& bus;
-    Memory oam;
+    Bus&    bus;
+    Memory  oam;
+    Memory  vram;
+    Memory  palette;
     uint8_t ppu_ctrl;
     uint8_t ppu_mask;
     uint8_t ppu_status;

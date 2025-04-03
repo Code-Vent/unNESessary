@@ -47,10 +47,6 @@ void Bus::write() {
 }
 
 int8_t Bus::read(uint16_t address) {
-    if(address == 0x2000)
-    {
-        auto i = 0;
-    }
     auto p = find(address);
     if (p != nullptr)
         return p->read(address);

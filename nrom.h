@@ -43,6 +43,13 @@ public:
         addr_range.lower = 0x8000;
         addr_mask = (h.prg_rom_chunks == 1)? 0xBFFF : 0xFFFF;
         addr_range.upper = addr_mask;
+
+        m = *chr_conn->bytes;
+        addr_mask = m->get_addr_mask();
+        addr_range = m->get_addr_range();
+        addr_range.lower = 0;
+        addr_range.upper = 0x1FFF;
+        addr_mask = 0x1FFF;
         return true;
     }
 
