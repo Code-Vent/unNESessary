@@ -62,6 +62,11 @@ protected:
     void mod_zero_neg_flags(int8_t result);
     void mod_zero_neg_carry_flags(int8_t result);
     void mod_zero(int8_t result);
+    void indexed_indirect();
+    void indirect_indexed();
+    void indirect();
+    void fetch_address(uint8_t indexed = 0, uint16_t mask=0xFFFF);
+    void fetch_rel_address();
     //////////////ADRESSING MODES//////////////////////////////
     void push(uint8_t data);
     uint8_t pop();

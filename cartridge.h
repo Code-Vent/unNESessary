@@ -29,7 +29,7 @@ class Cartridge {
 public:
     Cartridge(Bus& main_bus, Range pgr_rom, Bus& ppu_bus, Range chr_ram);
     ~Cartridge();
-    void load(const std::string& file_name);
+    void load(const std::string& file_name, Mapper* m= nullptr);
 };
 
 #endif //NES_CARTRIGE_H

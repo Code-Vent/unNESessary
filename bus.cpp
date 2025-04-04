@@ -10,7 +10,7 @@ Bus::Bus()
 : pp()
 {
     error = false;
-    last_address = last_data = 0;
+    last_address = 0;
 }
 
 Peripheral* Bus::find(uint16_t address) {
@@ -42,10 +42,6 @@ void Bus::write(uint8_t data)
     write(last_address, data);
 }
 
-void Bus::write() {
-    write(last_address, last_data);
-}
-
 int8_t Bus::read(uint16_t address) {
     auto p = find(address);
     if (p != nullptr)
@@ -64,58 +60,16 @@ void Bus::add(Peripheral& p) {
     pp.push_back(&p);
 }
 
-void Bus::latch_data(uint16_t address) {
-    last_address = address;
-    last_data = read(address);
-}
-
 void Bus::latch_address(uint16_t address) {
-    /*
-    uint16_t addr_abs = 0;
-    if (ptr_lo == 0x00FF) // Simulate page boundary hardware bug
-    {
-        addr_abs = (read(cpu->bus, ptr & 0xFF00) << 8) | read(cpu->bus, ptr + 0);
-    }
-    else // Behave normally
-    {
-        addr_abs = (read(cpu->bus, ptr + 1) << 8) | read(cpu->bus, ptr + 0);
-    }
-    cpu->data = read(cpu->bus, addr_abs);
-     */
-    uint16_t ptr_lo = read(address);
-    uint16_t ptr_hi = read(address + 1);
-    last_address = (ptr_hi << 8) | ptr_lo;
+    last_address = address;
 }
 
-void Bus::set_address_rel(uint16_t base) {
-    auto addr = base + last_data;
-    if((addr & 0xFF00) != (base & 0xFF00))
-        clock_cycles++;
-    last_address = addr & 0xFFFF;
+void Bus::inc() {
+    write(read() + 1);
 }
 
-void Bus::latch_data_rel(uint8_t rel) {
-    auto addr = rel + last_data;
-    if((addr & 0xFF00) != (last_address & 0xFF00))
-        clock_cycles++;
-    last_address = addr & 0xFFFF;
-    latch_data();
-}
-
-void Bus::latch_address() {
-    latch_address(last_address);
-}
-
-void Bus::latch_data() {
-    latch_data(last_address);
-}
-
-int8_t Bus::inc() {
-    return ++last_data;
-}
-
-int8_t Bus::dec() {
-    return --last_data;
+void Bus::dec() {
+    write(read() - 1);
 }
 
 void Bus::print_u16(uint16_t address) {

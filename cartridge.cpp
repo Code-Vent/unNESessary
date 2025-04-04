@@ -28,15 +28,20 @@ Cartridge::~Cartridge() {
     if(prg_ram)delete prg_ram;
 }
 
-void Cartridge::load(const std::string &file_name) {
+void Cartridge::load(const std::string &file_name, Mapper* m) {
     Header header;
     auto m_id = _load(file_name, header);
-    switch (m_id) {
-        case 0:
-            mapper = new Mapper_NROM;
-            break;
-        default:
-            mapper = new Mapper_Template;
+    if(m != nullptr) {
+        mapper = m;
+    }
+    else {
+        switch (m_id) {
+            case 0:
+                mapper = new Mapper_NROM;
+                break;
+            default:
+                mapper = new Mapper_Template;
+        }
     }
     prg_rom_conn = mapper->get_prg_rom_conn(prg_addr);
     if(header.prg_ram_size != 0)

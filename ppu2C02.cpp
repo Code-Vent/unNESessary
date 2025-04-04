@@ -61,7 +61,7 @@ int8_t PPU2C02::read(uint16_t address) {
             return bus.read((ppu_addr[1] << 8) | ppu_addr[0]);
         default:
             std::cout << std::hex << address << std::endl;
-            assert(false);
+            //assert(false);
             return 0;
     }
 }
