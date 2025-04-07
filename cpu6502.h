@@ -154,7 +154,9 @@ public:
     CPU6502(Bus& main_bus, Memory&& ram);
     bool execute();
     void reset();
+    void set_pc(uint16_t address);
     friend std::ostream& operator<<(std::ostream& os, const CPU6502&);
+    friend class Nes;
 };
 
 #endif //NES_CPU6502_H

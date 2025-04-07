@@ -28,20 +28,11 @@ void Nes::run(const std::string& file_name)
 
 
 void Nes::cpu_test() {
-    auto size = cart.prg_addr.upper - cart.prg_addr.lower + 1;
-    Memory prg_ram = Memory(cart.prg_addr, size);
-    //main_bus.remove(addr)
-    main_bus.add(prg_ram);
-    main_bus.write(0xfffc, 0x00);
-    main_bus.write(0xfffd, 0x00);
-    main_bus.write(0x0000, 0xa9);
-    main_bus.write(0x0001, 0x42);
-    main_bus.write(0x0002, 0x8d);
-    main_bus.write(0x0003, 0x00);
-    main_bus.write(0x0004, 0x02);
-    main_bus.write(0x0005, 0xD0);//BNE
-    main_bus.write(0x0006, (std::uint8_t)-7);
-
-    _run();
-
+    cart.load("../nestest.nes");
+    cpu.reset();
+    cpu.set_pc(0xC000);
+    cout << hex << "PC = " << (int)cpu.pc << endl;
+    while (cpu.execute() && main_bus.no_error()) {
+        cout << hex << "PC = " << (int)cpu.pc << endl;
+    }
 }

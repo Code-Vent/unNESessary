@@ -14,6 +14,7 @@ class Bus {
     std::vector<Peripheral*> pp;
     bool error;
     uint16_t last_address;
+    friend class CPU6502;
 public:
     uint8_t clock_cycles;
     Bus();
@@ -23,10 +24,7 @@ public:
     void write(uint8_t data);
     int8_t read(uint16_t address);
     int8_t read();
-    void dec();
-    void inc();
     Peripheral* find(uint16_t address);
-    void latch_address(uint16_t address);
     inline uint16_t address() { return last_address; }
     inline bool no_error() {
         if(error)

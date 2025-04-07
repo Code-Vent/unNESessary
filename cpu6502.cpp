@@ -13,8 +13,8 @@ CPU6502::Instruction CPU6502::lookupTable[16][16] = {
         {&CPU6502::BMI, &CPU6502::AND, &CPU6502::invalid, &CPU6502::RLA, &CPU6502::NOP, &CPU6502::AND, &CPU6502::ROL, &CPU6502::RLA, &CPU6502::SEC, &CPU6502::AND, &CPU6502::NOP, &CPU6502::RLA, &CPU6502::NOP, &CPU6502::AND, &CPU6502::ROL, &CPU6502::RLA},
         {&CPU6502::RTI, &CPU6502::EOR, &CPU6502::invalid, &CPU6502::SRE, &CPU6502::NOP, &CPU6502::EOR, &CPU6502::LSR, &CPU6502::SRE, &CPU6502::PHA, &CPU6502::EOR, &CPU6502::LSR, &CPU6502::ALR, &CPU6502::JMP, &CPU6502::EOR, &CPU6502::LSR, &CPU6502::SRE},
         {&CPU6502::BVC, &CPU6502::EOR, &CPU6502::invalid, &CPU6502::SRE, &CPU6502::NOP, &CPU6502::EOR, &CPU6502::LSR, &CPU6502::SRE, &CPU6502::CLI, &CPU6502::EOR, &CPU6502::NOP, &CPU6502::SRE, &CPU6502::NOP, &CPU6502::EOR, &CPU6502::LSR, &CPU6502::SRE},
-        {&CPU6502::RTS, &CPU6502::ADC, &CPU6502::invalid, &CPU6502::RRA, &CPU6502::PLA, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::ARR, &CPU6502::JMP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::BVS, &CPU6502::ADC, &CPU6502::invalid, &CPU6502::RRA},
-        {&CPU6502::SEI, &CPU6502::ADC, &CPU6502::NOP, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA},
+        {&CPU6502::RTS, &CPU6502::ADC, &CPU6502::invalid, &CPU6502::RRA, &CPU6502::PLA, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::ARR, &CPU6502::PLA, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::BVS, &CPU6502::ADC, &CPU6502::invalid, &CPU6502::RRA},
+        {&CPU6502::BVS, &CPU6502::ADC, &CPU6502::NOP, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA, &CPU6502::NOP, &CPU6502::ADC, &CPU6502::ROR, &CPU6502::RRA},
         {&CPU6502::NOP, &CPU6502::STA, &CPU6502::NOP, &CPU6502::SAX, &CPU6502::STY, &CPU6502::STA, &CPU6502::STX, &CPU6502::SAX, &CPU6502::DEY, &CPU6502::NOP, &CPU6502::TXA, &CPU6502::XAA, &CPU6502::STY, &CPU6502::STA, &CPU6502::STX, &CPU6502::SAX},
         {&CPU6502::BCC, &CPU6502::STA, &CPU6502::NOP, &CPU6502::AHX, &CPU6502::STY, &CPU6502::STA, &CPU6502::STX, &CPU6502::SAX, &CPU6502::TYA, &CPU6502::STA, &CPU6502::TXS, &CPU6502::TAS, &CPU6502::SHY, &CPU6502::STA, &CPU6502::SHX, &CPU6502::AHX},
         {&CPU6502::LDY, &CPU6502::LDA, &CPU6502::LDX, &CPU6502::LAX, &CPU6502::LDY, &CPU6502::LDA, &CPU6502::LDX, &CPU6502::LAX, &CPU6502::TAY, &CPU6502::LDA, &CPU6502::TAX, &CPU6502::NOP, &CPU6502::LDY, &CPU6502::LDA, &CPU6502::LDX, &CPU6502::LAX},
@@ -75,7 +75,7 @@ void CPU6502::push_pc() {
 }
 
 void CPU6502::branch() {
-    pc = bus.address();
+    pc = bus.last_address;
     bus.clock_cycles++;
 }
 
@@ -91,57 +91,57 @@ void CPU6502::mod_zero(int8_t result) {
 
 void CPU6502::mod_zero_neg_flags(int8_t result) {
     sr = (result == 0)? sr | flags::ZERO : sr & ~flags::ZERO;
-    sr = (result | 0x80)? sr | flags::NEGATIVE : sr & ~flags::NEGATIVE;
+    sr = (result & flags::NEGATIVE)? sr | flags::NEGATIVE : sr & ~flags::NEGATIVE;
 }
 
 void CPU6502::mod_zero_neg_carry_flags(int8_t result) {
     sr = (result == 0)? sr | flags::ZERO : sr & ~flags::ZERO;
-    sr = (result | 0x80)? sr | flags::NEGATIVE : sr & ~flags::NEGATIVE;
-    sr = (sr | flags::NEGATIVE)? sr & ~flags::CARRY : sr | flags::CARRY;
+    sr = (result & flags::NEGATIVE)? sr | flags::NEGATIVE : sr & ~flags::NEGATIVE;
+    sr = (sr & flags::NEGATIVE)? sr & ~flags::CARRY : sr | flags::CARRY;
 }
 
 void CPU6502::fetch_address(uint8_t indexed, uint16_t mask) {
-    uint16_t ptr_lo = bus.read(pc);
-    uint16_t ptr_hi = bus.read(pc + 1);
-    auto base = (ptr_hi << 8) | ptr_lo;
-    auto addr = base + indexed;
+    uint8_t ptr_lo = bus.read(pc);
+    uint8_t ptr_hi = bus.read(pc + 1);
+    uint16_t base = (ptr_hi << 8) | ptr_lo;
+    uint16_t addr = base + indexed;
     if((addr & 0xFF00) != (base & 0xFF00))
         bus.clock_cycles++;
-    bus.latch_address(addr & mask);
+    bus.last_address = addr & mask;
 }
 
 void CPU6502::indirect() {
     fetch_address(pc);
-    fetch_address(bus.address());
+    fetch_address(bus.last_address);
 }
 
 void CPU6502::indexed_indirect() {
-    uint16_t t = bus.read(pc);
-    uint16_t lo = bus.read((uint16_t)(t + (uint16_t)x) & 0x00FF);
-    uint16_t hi = bus.read((uint16_t)(t + (uint16_t)x + 1) & 0x00FF);
+    uint8_t t = bus.read(pc);
+    uint8_t lo = bus.read((uint16_t)(t + (uint16_t)x) & 0x00FF);
+    uint8_t hi = bus.read((uint16_t)(t + (uint16_t)x + 1) & 0x00FF);
     uint16_t addr_abs = (hi << 8) | lo;
-    bus.latch_address(addr_abs);
+    bus.last_address = addr_abs;
 }
 
 void CPU6502::indirect_indexed() {
-    uint16_t t = bus.read(pc);
-    uint16_t lo = bus.read(t & 0x00FF);
-    uint16_t hi = bus.read((t + 1) & 0x00FF);
+    uint8_t t = bus.read(pc);
+    uint8_t lo = bus.read(t & 0x00FF);
+    uint8_t hi = bus.read((t + 1) & 0x00FF);
 
     uint16_t addr_abs = (hi << 8) | lo;
     addr_abs += y;
 
     if ((addr_abs & 0xFF00) != (hi << 8))
         bus.clock_cycles++;
-    bus.latch_address(addr_abs);
+    bus.last_address = addr_abs;
 }
 
 void CPU6502::fetch_rel_address() {
-    auto addr = bus.read(pc);
-    addr += (pc + 1);
+    auto rel = bus.read(pc);
+    uint16_t addr = rel + (pc + 1);
     if((addr & 0xFF00) != (pc & 0xFF00))
         bus.clock_cycles++;
-    bus.latch_address(addr & 0xFFFF);
+    bus.last_address = addr & 0xFFFF;
 }
 
 void CPU6502::call_addr_mode(uint8_t opcode) {
@@ -259,9 +259,12 @@ bool CPU6502::execute() {
     call_addr_mode(opcode);
     uint8_t row = (opcode & 0xF0) >> 4;
     uint8_t col = (opcode & 0x0F);
-    //std::cout << std::hex << "Last Opcode = " << (int)opcode << std::endl;
     (this->*lookupTable[row][col].instruction)();
     return !error;
+}
+
+void CPU6502::set_pc(uint16_t address) {
+    pc = address;
 }
 
 void CPU6502::reset() {
@@ -280,7 +283,7 @@ void CPU6502::x_ind() {
 }
 
 void CPU6502::imm() {
-    bus.latch_address(pc);
+    bus.last_address = pc;
     pc++;
     bus.clock_cycles += 2;
 }
@@ -340,7 +343,7 @@ void CPU6502::rel() {
 }
 
 void CPU6502::acc() {
-    bus.latch_address(reg_base_addr + a_index);
+    bus.last_address = reg_base_addr + a_index;
     bus.clock_cycles += 2;
 }
 
@@ -415,7 +418,7 @@ void CPU6502::JSR() {
     bus.clock_cycles += 2;
     pc--;
     push_pc();
-    pc = bus.address();
+    pc = bus.last_address;
 }
 
 void CPU6502::AND() {
@@ -464,7 +467,7 @@ void CPU6502::LSR() {
 }
 
 void CPU6502::JMP() {
-    pc = bus.address();
+    pc = bus.last_address;
 }
 
 void CPU6502::RTS() {
@@ -517,7 +520,7 @@ void CPU6502::CMP() {
 
 void CPU6502::INC() {
     bus.clock_cycles += 2;
-    bus.inc();
+    bus.write(bus.read() + 1);;
     mod_zero_neg_flags(bus.read());
 }
 
@@ -562,13 +565,13 @@ void CPU6502::LAX() {
 
 void CPU6502::DCP() {
     bus.clock_cycles += 2;
-    bus.dec();
+    bus.write(bus.read() - 1);;
     CMP();
 }
 
 void CPU6502::ISB() {
     bus.clock_cycles += 2;
-    bus.inc();
+    bus.write(bus.read() + 1);;
     SBC();
 }
 
@@ -604,9 +607,11 @@ void CPU6502::RLA() {
 }
 
 void CPU6502::BIT() {
-    auto result = a & bus.read();
+    uint8_t data = bus.read();
+    uint8_t result = a & data;
     mod_zero(result);
-    sr |= (bus.read() & flags::OVERFLOW & flags::NEGATIVE);
+    sr = (data & flags::OVERFLOW)? sr | flags::OVERFLOW : sr & ~flags::OVERFLOW;
+    sr = (data & flags::NEGATIVE)? sr | flags::NEGATIVE : sr & ~flags::NEGATIVE;
 }
 
 void CPU6502::ROL() {
@@ -655,7 +660,7 @@ void CPU6502::BVS() {
 }
 
 void CPU6502::SEI() {
-    sr |= 0x04;
+    sr |= flags::INTERRUPT;
 }
 
 void CPU6502::STY() {
@@ -723,7 +728,7 @@ void CPU6502::TSX() {
 
 void CPU6502::DEC() {
     bus.clock_cycles += 2;
-    bus.dec();
+    bus.write(bus.read() - 1);;
     mod_zero_neg_flags(bus.read());
 }
 

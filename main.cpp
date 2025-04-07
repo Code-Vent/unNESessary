@@ -8,6 +8,6 @@
 int main() {
     Nes nes;
     nes.cpu_test();
-    //nes.run("../mario.nes");
+    //nes.run("../nestest.nes");
     return 0;
 }

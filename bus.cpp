@@ -60,18 +60,6 @@ void Bus::add(Peripheral& p) {
     pp.push_back(&p);
 }
 
-void Bus::latch_address(uint16_t address) {
-    last_address = address;
-}
-
-void Bus::inc() {
-    write(read() + 1);
-}
-
-void Bus::dec() {
-    write(read() - 1);
-}
-
 void Bus::print_u16(uint16_t address) {
     cout << hex << (int)((read(address+1)<<8) | read(address)) << endl;
 }
